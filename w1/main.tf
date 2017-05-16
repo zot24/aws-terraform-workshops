@@ -13,22 +13,22 @@ resource "aws_security_group" "" {
 }
 
 # To reference attributes of resources use syntax TYPE.NAME.ATTRIBUTE
-#   for example, in order to create rule in specific secrurity group you will have to
+#   for example, in order to create a rule in specific security group you will have to
 #   refer security group by its name :
 #     security_group_id = "${aws_security_group.mysecuritygroup.id}"
 #
 # Reference: https://www.terraform.io/docs/configuration/interpolation.html
 
-/*
 resource "aws_security_group_rule" "ssh_ingress_access" {
   # 1. Add required arguments to open ingress(incoming) traffic to TCP port 22 - we'll use it later to ssh into instance.
   # 2. Add argument to reference Security Group resource.
   # Docs: https://www.terraform.io/docs/providers/aws/r/security_group_rule.html
 
   # ...
+  cidr_blocks = [ "0.0.0.0/0" ]
+  # ...
 
   security_group_id = ""
-  cidr_blocks = [ "0.0.0.0/0" ]
 }
 
 resource "aws_security_group_rule" "egress_access" {
@@ -37,9 +37,10 @@ resource "aws_security_group_rule" "egress_access" {
   # Docs: https://www.terraform.io/docs/providers/aws/r/security_group_rule.html
 
   # ...
+  cidr_blocks = [ "0.0.0.0/0" ]
+  # ...
 
   security_group_id = ""
-  cidr_blocks = [ "0.0.0.0/0" ]
 }
 
 resource "aws_instance" "" {
@@ -63,4 +64,3 @@ resource "aws_instance" "" {
   ami = "ami-cb2305a1"
   availability_zone = "us-east-1c"
 }
-*/
